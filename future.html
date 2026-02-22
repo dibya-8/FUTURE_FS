@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- SEO Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional Portfolio Website - Showcasing projects, skills, and contact details.">
+    <meta name="keywords" content="Portfolio, Web Developer, Projects, Resume, Contact">
+    <meta name="author" content="Your Name">
+    <title>Your Name | Portfolio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+        }
+
+        header {
+            background: #111;
+            color: #fff;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            margin: auto;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #00adb5;
+        }
+
+        section {
+            padding: 80px 20px;
+            min-height: 100vh;
+        }
+
+        .home {
+            background: linear-gradient(to right, #00adb5, #393e46);
+            color: white;
+            text-align: center;
+            padding-top: 120px;
+        }
+
+        .home h1 {
+            font-size: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #fff;
+            color: #111;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #222;
+            color: #fff;
+        }
+
+        .projects, .about, .contact {
+            width: 90%;
+            margin: auto;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .project-card {
+            background: #f4f4f4;
+            padding: 20px;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+        }
+
+        .skills {
+            margin-top: 20px;
+        }
+
+        .skill-bar {
+            margin-bottom: 15px;
+        }
+
+        .skill-bar span {
+            display: block;
+            font-weight: bold;
+        }
+
+        .progress {
+            background: #ddd;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress div {
+            height: 10px;
+            background: #00adb5;
+        }
+
+        form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        form input, form textarea {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form button {
+            padding: 10px;
+            background: #00adb5;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        form button:hover {
+            background: #007b7f;
+        }
+
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <h2>DIBYASHREE SAHU</h2>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Home Section -->
+<section id="home" class="home">
+    <h1>Hello, I'm DIBYASHREE SAHU</h1>
+    <p>A passionate Web Developer creating modern and responsive designs.</p>
+    <a href="#projects" class="btn">View My Work</a>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="projects">
+    <h2>My Projects</h2>
+    <div class="project-grid">
+        <div class="project-card">
+            <h3>Project 1 (ARDUINO PROJECT) </h3>
+          
+            <p2>Arduino-Based Wheelchair Fall Detection System
+
+Designed and developed a smart fall detection system for wheelchair users using Arduino (Arduino Uno). The system uses an accelerometer and gyroscope sensor (e.g., MPU6050) to monitor sudden tilt, impact, or abnormal movement. When a fall is detected, the device automatically triggers an alert through a buzzer and sends emergency notifications via a GSM module (e.g., SIM800L) to predefined contacts.
+
+This project enhances safety for elderly and disabled individuals by providing real-time monitoring and quick emergency response. It demonstrates skills in embedded systems, sensor integration, IoT communication, and real-time data processing.</p2>
+        </div>
+        <div class="project-card">
+            <h3>Project 2 (RASPBERRY PI PROJECT) </h3>
+            <p> Raspberry Pi Based Underwater Acoustic Sensor Network
+Designed and implemented a prototype underwater communication system using Raspberry Pi to enable acoustic data transmission between submerged sensor nodes. Developed signal processing algorithms for underwater sound communication and tested real-time data exchange for environmental monitoring applications such as water quality analysis and marine surveillance.</p>
+        </div>
+        <div class="project-card">
+            <h3>Project 3 (SMART INDIA HACKATHON PROJECT) </h3>
+           <p> Developed a mobile application that scans food items and analyzes their protein content using image recognition and nutritional databases. The app helps users track protein intake and make healthier dietary choices. Selected among the Top 50 teams nationwide in Smart India Hackathon for innovative solution design and real-world impact.</p2>
+        </div>
+    </div>
+</section>
+
+<!-- About / Resume Section -->
+<section id="about" class="about">
+    <h2>About Me</h2>
+    <p>Aspiring software developer with hands-on experience in HTML and Python, basic knowledge of cybersecurity principles, and a strong interest in mobile application development. Dedicated to learning new technologies and applying problem-solving skills to create innovative and user-focused applications..</p>
+
+   <div class="skills">
+    <h3>Skills</h3>
+
+    <div class="pie-container">
+
+        <div class="pie-card">
+            <div class="pie" style="--percent:90; --color: #00adb5;"></div>
+            <h4>HTML</h4>
+            <p>90%</p>
+        </div>
+
+        <div class="pie-card">
+            <div class="pie" style="--percent:85; --color: #6a5acd;"></div>
+            <h4>Python</h4>
+            <p>85%</p>
+        </div>
+
+        <div class="pie-card">
+            <div class="pie" style="--percent:75; --color: #ff7b54;"></div>
+            <h4>JavaScript</h4>
+            <p>75%</p>
+        </div>
+
+    </div>
+</div>
+<style>
+.skills {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.pie-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.pie-card {
+    text-align: center;
+}
+
+.pie {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: conic-gradient(
+        var(--color) calc(var(--percent) * 1%),
+        #e0e0e0 0%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    position: relative;
+}
+
+/* Inner white circle */
+.pie::before {
+    content: "";
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: white;
+    border-radius: 50%;
+}
+
+.pie-card h4 {
+    margin-top: 15px;
+    font-size: 16px;
+}
+
+.pie-card p {
+    font-weight: bold;
+    color: #333;
+}
+</style>
+
+<!-- Contact Section -->
+<section id="contact" class="contact">
+    <h2>Contact Me</h2>
+
+    <div class="contact-details">
+        <p><strong>Name:</strong> DIBYASHREE SAHU</p>
+        <p><strong>Email:</strong> dibyad@gmail.com</p>
+        
+        <p>
+            “Looking forward to opportunities where I can apply my technical skills,
+            enhance my knowledge, and contribute to organizational growth.”
+        </p>
+    </div>
+</section>
+
+</body>
+</html>
