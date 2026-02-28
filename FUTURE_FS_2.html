@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mini CRM - Lead Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f4f6f9;
+        }
+
+        header {
+            background: #1e293b;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            flex: 1;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            background: white;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background: #e2e8f0;
+        }
+
+        select, button, input {
+            padding: 6px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .search-box {
+            margin-bottom: 15px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 30%;
+            left: 35%;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            width: 300px;
+        }
+
+        .modal textarea {
+            width: 100%;
+            height: 80px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>Mini CRM - Client Lead Management</h2>
+</header>
+
+<div class="container">
+
+    <!-- Dashboard Stats -->
+    <div class="stats">
+        <div class="card">
+            <h3>Total Leads</h3>
+            <p id="totalLeads">0</p>
+        </div>
+        <div class="card">
+            <h3>New Leads</h3>
+            <p id="newLeads">0</p>
+        </div>
+        <div class="card">
+            <h3>Converted</h3>
+            <p id="convertedLeads">0</p>
+        </div>
+    </div>
+
+    <!-- Search -->
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search by name..." onkeyup="searchLeads()">
+    </div>
+
+    <!-- Leads Table -->
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Source</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="leadTable">
+        </tbody>
+    </table>
+
+</div>
+
+<!-- Notes Modal -->
+<div class="modal" id="noteModal">
+    <h3>Add Follow-up Note</h3>
+    <textarea id="noteText"></textarea><br><br>
+    <button onclick="saveNote()">Save</button>
+    <button onclick="closeModal()">Cancel</button>
+</div>
+
+<script>
+    let leads = [
+        { name: "Rahul Sharma", email: "rahul@email.com", source: "Website", status: "New", notes: [] },
+        { name: "Priya Patel", email: "priya@email.com", source: "Instagram", status: "Contacted", notes: [] },
+        { name: "Arjun Verma", email: "arjun@email.com", source: "Referral", status: "Converted", notes: [] },
+	{ name: "Dibya S", email: "dibya@email.com", source: "Instagram", status: "Converted", notes: [] },
+	{ name: "Sriyan Kumar", email: "kumar@email.com", source: "Instagram", status: "Contacted", notes: [] },
+	{ name: "Dilip D", email: "dilip@email.com", source: "Referral", status: "New", notes: [] },
+	{ name: "Deepak", email: "dk@email.com", source: "Website", status: "Contacted", notes: [] },
+	{ name: "Srivatsa Kamble", email: "vatsa@email.com", source: "Website", status: "Converted", notes: [] },
+	{ name: "Syed Junaid", email: "sj@email.com", source: "Referral", status: "New", notes: [] },
+	{ name: "Varen Kulkarni", email: "varen@email.com", source: "Instagram", status: "New", notes: [] }
+
+
+
+    ];
+
+    let currentLeadIndex = null;
+
+    function renderLeads() {
+        let table = document.getElementById("leadTable");
+        table.innerHTML = "";
+
+        leads.forEach((lead, index) => {
+            table.innerHTML += `
+                <tr>
+                    <td>${lead.name}</td>
+                    <td>${lead.email}</td>
+                    <td>${lead.source}</td>
+                    <td>
+                        <select onchange="updateStatus(${index}, this.value)">
+                            <option ${lead.status=="New"?"selected":""}>New</option>
+                            <option ${lead.status=="Contacted"?"selected":""}>Contacted</option>
+                            <option ${lead.status=="Converted"?"selected":""}>Converted</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button onclick="openModal(${index})">Add Note</button>
+                    </td>
+                </tr>
+            `;
+        });
+
+        updateStats();
+    }
+
+    function updateStatus(index, value) {
+        leads[index].status = value;
+        updateStats();
+    }
+
+    function openModal(index) {
+        currentLeadIndex = index;
+        document.getElementById("noteModal").style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById("noteModal").style.display = "none";
+    }
+
+    function saveNote() {
+        let note = document.getElementById("noteText").value;
+        if(note.trim() !== "") {
+            leads[currentLeadIndex].notes.push(note);
+            alert("Note added!");
+        }
+        document.getElementById("noteText").value = "";
+        closeModal();
+    }
+
+    function updateStats() {
+        document.getElementById("totalLeads").innerText = leads.length;
+        document.getElementById("newLeads").innerText = leads.filter(l => l.status=="New").length;
+        document.getElementById("convertedLeads").innerText = leads.filter(l => l.status=="Converted").length;
+    }
+
+    function searchLeads() {
+        let input = document.getElementById("searchInput").value.toLowerCase();
+        let rows = document.querySelectorAll("#leadTable tr");
+
+        rows.forEach(row => {
+            let name = row.cells[0].innerText.toLowerCase();
+            row.style.display = name.includes(input) ? "" : "none";
+        });
+    }
+
+    renderLeads();
+</script>
+
+</body>
+</html>
